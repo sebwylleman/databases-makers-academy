@@ -1,7 +1,7 @@
-require "recipes_repo"
+require "recipe_repo"
 require "pg"
 
-RSpec.describe RecipesRepo do
+RSpec.describe RecipeRepo do
 
   def reset_recipes_table
     seed_sql = File.read('spec/seeds_recipes.sql')
@@ -14,7 +14,7 @@ RSpec.describe RecipesRepo do
   end
 
   it "returns a list of all recipes" do
-    repo = RecipesRepo.new
+    repo = RecipeRepo.new
     recipes = repo.all
 
     expect(recipes.length).to eq 4
@@ -24,10 +24,10 @@ RSpec.describe RecipesRepo do
     expect(recipes.first.rating).to eq '5'
 
 
-    expect(recipes.length).to eq 2
+    expect(recipes.length).to eq 4
     expect(recipes.last.names).to eq 'Grilled Salmon'
     expect(recipes.last.cooking_time).to eq '25' # this might not work, perhaps change to int
-    expect(recipes.last.id).to eq '2'
+    expect(recipes.last.id).to eq '4'
     expect(recipes.first.rating).to eq '5'
 
   end
