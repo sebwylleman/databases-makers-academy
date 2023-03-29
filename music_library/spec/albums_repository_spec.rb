@@ -16,7 +16,7 @@ RSpec.describe AlbumsRepository do
   it "returns two albums" do
     repo = AlbumsRepository.new
     album = repo.all
-
+    
     expect(album.length).to eq  2
     expect(album[0].title).to eq 'Abbey Road'
     expect(album[0].release_year).to eq '1969'
@@ -24,5 +24,16 @@ RSpec.describe AlbumsRepository do
     expect(album[1].title).to eq 'Revolver'
     expect(album[1].release_year).to eq '1966'
     expect(album[1].artist_id).to eq '1'
+  end
+
+  it "returns a single album" do
+    repo = AlbumsRepository.new
+    album = repo.find(1)
+    expect(album.title).to eq "Abbey Road"
+    expect(album.release_year).to eq '1969'
+
+    album = repo.find(2)
+    expect(album.title).to eq "Revolver"
+    expect(album.release_year).to eq '1966'
   end
 end
