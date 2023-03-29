@@ -18,6 +18,16 @@ class RecipeRepo
     return recipes
   end
 
+  def find(id)
+    sql = 'SELECT * FROM recipes WHERE id = $1;'
+    result = DatabaseConnection.exec_params(sql, [id])
 
+    first_entry = result[0]
+    recipe = Recipe.new
+    recipe.names = first_entry['names']
+    recipe.cooking_time = first_entry['cooking_time']
+    recipe.rating = first_entry['rating']
 
+    return recipe
+  end
 end

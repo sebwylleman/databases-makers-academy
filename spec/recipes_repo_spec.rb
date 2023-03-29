@@ -31,4 +31,15 @@ RSpec.describe RecipeRepo do
     expect(recipes.first.rating).to eq '5'
 
   end
+
+  it "returns a single recipe value from the first row" do
+    repo = RecipeRepo.new
+    recipes = repo.find('1')
+
+    expect(recipes.names).to eq 'Spaghetti Bolognese'
+    expect(recipes.cooking_time).to eq '45'
+    expect(recipes.rating).to eq '5'
+
+  end
+
 end
